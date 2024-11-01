@@ -30,18 +30,152 @@ pip install xy_django_app_api_auth
 
 ## How to use
 
+
+##### 1. Direct import
+
+- ###### 1. Setting global configuration
+
+Add the following configuration to the settings.py file in the Django project.  
+For example:[settings.py](../samples/xy_web_server_demo/source/Runner/Admin/xy_web_server_demo/settings.py)
+
+```python
+# settings.py
+
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "xy_django_app_api_auth",
+    "Demo",
+    "Resource",
+    "Media",
+]
+
+```
+
+- ###### 2. Run the project
+
+```bash
+xy_web_server -w django makemigrations
+xy_web_server -w django migrate
+# 同步数据表
+xy_web_server -w django start
+
+# 启动工程后访问 http://127.0.0.1:8401/admin 验证接口授权管理系统
+```
+
+##### 2. Custom
+
+- ###### 1. Create the ApiAuth module
+
+> Operation [Sample Project](../samples/xy_web_server_demo/)
+
 ```bash
 # bash
-xy_django_app_api_auth -c project -n xy_django_app_api_auth_demo
-# 创建项目 [ xy_django_app_api_auth_demo ] 成功!!!
-# 项目路径 ==>>> /mnt/bs-media/Workspace/project/opensource/xy-web-service/xy_django_app_api_auth/test/xy_django_app_api_auth_demo
-
-cd xy_django_app_api_auth_demo
-xy_django_app_api_auth
-# >>>>>>>>>>>> xy_django_app_api_auth - v1.0.1 <<<<<<<<<<<<<
-#
-# Hello World!!!
+xy_web_server -w django startapp ApiAuth
+# ApiAuth 模块创建在 source/Runner/Admin/ApiAuth 
 ```
+
+- ###### 2. Setting global configuration
+
+Add the following configuration to the settings.py file in the Django project.  
+For example: [settings.py](../samples/xy_web_server_demo/source/Runner/Admin/xy_web_server_demo/settings.py)
+
+```python
+# settings.py
+
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "Demo",
+    "Resource",
+    "Media",
+    "ApiAuth",
+]
+
+```
+
+- ###### 3. Add the following code to the [models.py](../samples/xy_web_server_demo/source/Runner/Admin/ApiAuth/models.py) of the  [ApiAuth](../samples/xy_web_server_demo/source/Runner/Admin/ApiAuth) module
+
+```python
+# models.py
+from django.db import models
+from django.utils.translation import gettext_lazy as _
+from xy_django_app_api_auth.abstracts import *
+
+
+class MApiAuthCredential(MAApiAuthCredential):
+    versions = models.ManyToManyField(
+        "xy_django_app_information.MVersion",
+        verbose_name=_("所属版本"),
+        related_name="%(app_label)s_%(class)s_versions",
+        blank=True,
+    )
+
+    class Meta:
+        verbose_name = _("授权用户凭证")
+        verbose_name_plural = _("授权用户凭证")
+        app_label = "ApiAuth"
+
+
+class MApiAuthCredentialCache(MAApiAuthCredentialCache):
+    credential = models.ForeignKey(
+        "ApiAuth.MApiAuthCredential",
+        verbose_name=_("凭证"),
+        related_name="%(app_label)s_%(class)s_credential",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+    )
+
+    class Meta:
+        verbose_name = _("授权用户凭证缓存")
+        verbose_name_plural = _("授权用户凭证缓存")
+        app_label = "ApiAuth"
+
+```
+
+- ###### 4. Add the following code to the [admin.py](../samples/xy_web_server_demo/source/Runner/Admin/ApiAuth/admin.py) of the [ApiAuth](../samples/xy_web_server_demo/source/Runner/Admin/ApiAuth) module
+
+```python
+# admin.py
+# -*- coding: UTF-8 -*-
+
+
+from django.contrib import admin
+from .models import *
+
+
+# Register your models here.
+@admin.register(MApiAuthCredential)
+class AApiAuthCredential(admin.ModelAdmin):
+    pass
+
+
+@admin.register(MApiAuthCredentialCache)
+class AApiAuthCredentialCache(admin.ModelAdmin):
+    pass
+
+```
+
+- ###### 5. Run the project
+
+```bash
+xy_web_server -w django makemigrations
+xy_web_server -w django migrate
+# 同步数据表
+xy_web_server -w django start
+
+# 启动工程后访问 http://127.0.0.1:8401/admin 验证接口授权管理系统
+```
+
 
 ## License
 xy_django_app_api_auth is licensed under the <Mulan Permissive Software License，Version 2>. See the [LICENSE](../LICENSE) file for more info.

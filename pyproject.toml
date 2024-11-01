@@ -9,7 +9,7 @@ requires-python = ">=3.11.3"
 name = "xy_django_app_api_auth"
 
 authors = [{ name = "余洋", email = "yuyangit.0515@qq.com" }]
-description = "后台账户数据模型"
+description = "接口授权模型"
 
 dynamic = ["version"]
 
@@ -22,6 +22,7 @@ dependencies = [
     "xy_string",
     "xy_django_model",
     "xy_django_serializer",
+    "xy_django_app_information",
 ]
 
 readme = "README.md"

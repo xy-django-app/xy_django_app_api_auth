@@ -1,2 +1,2 @@
-include xy_django_app_account
-recursive-include xy_django_app_account/* *
+include xy_django_app_api_auth
+recursive-include xy_django_app_api_auth/* *
