@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "xy_django_app_information",
     "xy_django_app_api_auth",
     "Demo",
     "Resource",
