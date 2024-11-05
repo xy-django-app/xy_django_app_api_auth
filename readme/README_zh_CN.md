@@ -20,7 +20,8 @@
 ## 源码仓库
 
 - <a href="https://github.com/xy-django-app/xy_django_app_api_auth.git" target="_blank">Github地址</a>  
-- <a href="https://gitee.com/xy-django-app/xy_django_app_api_auth.git" target="_blank">Gitee地址</a>
+- <a href="https://gitee.com/xy-opensource/xy_django_app_api_auth.git" target="_blank">Gitee地址</a>  
+- <a href="https://gitcode.com/xy-opensource/xy_django_app_api_auth.git" target="_blank">GitCode地址</a>  
 
 ## 安装
 
