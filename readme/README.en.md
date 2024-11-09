@@ -2,43 +2,42 @@
  * @Author: 余洋 yuyangit.0515@qq.com
  * @Date: 2024-10-18 13:02:22
  * @LastEditors: 余洋 yuyangit.0515@qq.com
- * @LastEditTime: 2024-10-23 20:52:11
- * @FilePath: /xy_django_app_api_auth/readme/README_zh_CN.md
+ * @LastEditTime: 2024-10-23 20:52:22
+ * @FilePath: /xy_django_app_api_auth/readme/README.en.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 # xy_django_app_api_auth
 
-- [简体中文](README_zh_CN.md)
-- [繁体中文](README_zh_TW.md)
-- [English](README_en.md)
+- [简体中文](../README.md)
+- [繁體中文](README.zh-hant.md)
+- [English](README.en.md)
 
+## Description
 
-## 说明
+Interface authorization model.
 
-接口授权模型.
+## Source Code Repositories
 
-## 源码仓库
+- <a href="https://github.com/xy-django-app/xy_django_app_api_auth.git" target="_blank">Github</a>  
+- <a href="https://gitee.com/xy-opensource/xy_django_app_api_auth.git" target="_blank">Gitee</a>  
+- <a href="https://gitcode.com/xy-opensource/xy_django_app_api_auth.git" target="_blank">GitCode</a>  
 
-- <a href="https://github.com/xy-django-app/xy_django_app_api_auth.git" target="_blank">Github地址</a>  
-- <a href="https://gitee.com/xy-opensource/xy_django_app_api_auth.git" target="_blank">Gitee地址</a>  
-- <a href="https://gitcode.com/xy-opensource/xy_django_app_api_auth.git" target="_blank">GitCode地址</a>  
-
-## 安装
+## Installation
 
 ```bash
 # bash
 pip install xy_django_app_api_auth
 ```
 
-## 使用
+## How to use
 
 
-##### 1. 直接引入
+##### 1. Direct import
 
-- ###### 1. 设置全局配置
+- ###### 1. Setting global configuration
 
-在Django项目中的settings.py文件中加入如下配置
-例如: [settings.py](../samples/xy_web_server_demo/source/Runner/Admin/xy_web_server_demo/settings.py)
+Add the following configuration to the settings.py file in the Django project.  
+For example:[settings.py](../samples/xy_web_server_demo/source/Runner/Admin/xy_web_server_demo/settings.py)
 
 ```python
 # settings.py
@@ -59,21 +58,22 @@ INSTALLED_APPS = [
 
 ```
 
-- ###### 2. 运行项目
+- ###### 2. Run the project
 
 ```bash
 xy_web_server -w django makemigrations
 xy_web_server -w django migrate
 # 同步数据表
 xy_web_server -w django start
+
 # 启动工程后访问 http://127.0.0.1:8401/admin 验证接口授权管理系统
 ```
 
-##### 2. 自定义
+##### 2. Custom
 
-- ###### 1. 创建ApiAuth模块
+- ###### 1. Create the ApiAuth module
 
-> 操作 [样例工程](../samples/xy_web_server_demo/)
+> Operation [Sample Project](../samples/xy_web_server_demo/)
 
 ```bash
 # bash
@@ -81,10 +81,10 @@ xy_web_server -w django startapp ApiAuth
 # ApiAuth 模块创建在 source/Runner/Admin/ApiAuth 
 ```
 
-- ###### 2. 设置全局配置
+- ###### 2. Setting global configuration
 
-在Django项目中的settings.py文件中加入如下配置
-例如: [settings.py](../samples/xy_web_server_demo/source/Runner/Admin/xy_web_server_demo/settings.py)
+Add the following configuration to the settings.py file in the Django project.  
+For example: [settings.py](../samples/xy_web_server_demo/source/Runner/Admin/xy_web_server_demo/settings.py)
 
 ```python
 # settings.py
@@ -104,7 +104,7 @@ INSTALLED_APPS = [
 
 ```
 
-- ###### 3. 在[ApiAuth](../samples/xy_web_server_demo/source/Runner/Admin/ApiAuth)模块的[models.py](../samples/xy_web_server_demo/source/Runner/Admin/ApiAuth/models.py)文件中加入如下代码
+- ###### 3. Add the following code to the [models.py](../samples/xy_web_server_demo/source/Runner/Admin/ApiAuth/models.py) of the  [ApiAuth](../samples/xy_web_server_demo/source/Runner/Admin/ApiAuth) module
 
 ```python
 # models.py
@@ -144,7 +144,7 @@ class MApiAuthCredentialCache(MAApiAuthCredentialCache):
 
 ```
 
-- ###### 4. 在[ApiAuth](../samples/xy_web_server_demo/source/Runner/Admin/ApiAuth)模块的[admin.py](../samples/xy_web_server_demo/source/Runner/Admin/ApiAuth/admin.py)文件中加入如下代码
+- ###### 4. Add the following code to the [admin.py](../samples/xy_web_server_demo/source/Runner/Admin/ApiAuth/admin.py) of the [ApiAuth](../samples/xy_web_server_demo/source/Runner/Admin/ApiAuth) module
 
 ```python
 # admin.py
@@ -167,30 +167,38 @@ class AApiAuthCredentialCache(admin.ModelAdmin):
 
 ```
 
-- ###### 5. 运行项目
+- ###### 5. Run the project
 
 ```bash
 xy_web_server -w django makemigrations
 xy_web_server -w django migrate
 # 同步数据表
 xy_web_server -w django start
+
 # 启动工程后访问 http://127.0.0.1:8401/admin 验证接口授权管理系统
 ```
 
+##### Run [Sample Project](../samples/xy_web_server_demo)
 
-## 许可证
-xy_django_app_api_auth 根据 <木兰宽松许可证, 第2版> 获得许可。有关详细信息，请参阅 [LICENSE](../LICENSE) 文件。
-
-## 捐赠
-
-如果小伙伴们觉得这些工具还不错的话，能否请咱喝一杯咖啡呢?  
-
-![Pay-Total](./Pay-Total.png)
+> For detailed usage of the sample project, please go to the following repository <b style="color: blue">xy_web_server.git</b> 
+> - <a href="https://github.com/xy-web-service/xy_web_server.git" target="_blank">Github</a>  
+> - <a href="https://gitee.com/xy-opensource/xy_web_server.git" target="_blank">Gitee</a>
+> - <a href="https://gitcode.com/xy-opensource/xy_web_server.git" target="_blank">GitCode</a>  
 
 
-## 联系方式
+## License
+xy_django_app_api_auth is licensed under the <Mulan Permissive Software License，Version 2>. See the [LICENSE](../LICENSE) file for more info.
+
+## Donate
+
+If you think these tools are pretty good, Can you please have a cup of coffee?  
+
+![Pay-Total](./Pay-Total.png)  
+
+
+## Contact
 
 ```
-微信: yuyangiit
-邮箱: yuyangit.0515@qq.com
+WeChat: yuyangiit
+Mail: yuyangit.0515@qq.com
 ```
